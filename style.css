@@ -1,0 +1,32 @@
+*{margin: 0;padding: 0}
+*{box-sizing: border-box}
+.window{
+    width: 400px;
+    height: 300px;
+    margin: 20px auto;
+    overflow: hidden;
+}
+.images{
+    position: relative;
+}
+.images > img{
+    width: 100%;
+    /* 不加上这一句的话，就会出现在后面的元素没有办法出现，这一句的意思是宽度为父元素的宽度。 */
+    transition: all 0.3s;
+    /* 让img中的所有的元素动作都是在0.3秒钟完成 */
+    top: 0;
+    position: absolute;
+}
+/* 图片的三种位置，当前窗口位置，离开窗口，进入窗口 */
+.images > img.current{
+    left: 0;
+    transform: translateX(0);
+    z-index: 1;
+}
+.images > img.leave{
+    transform: translateX(-100%);
+    z-index: 1;
+}
+.images > img.enter{
+    transform: translateX(100%);
+}
