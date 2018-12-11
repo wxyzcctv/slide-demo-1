@@ -1,13 +1,29 @@
 let n
 初始化()
-setInterval( ()=>{
+let timer = setInterval( ()=>{
     makeLeave(getImage(n))
     .one('transitionend',(e)=>{
         makeEnter($(e.currentTarget))
     })
     makeCurrent(getImage(n+1))
     n +=1
-},3000)
+},2000)
+
+document.addEventListener('visibilitychange',function(){
+    if(document.hidden){
+        window.clearInterval(timer)
+    }else{
+        timer = setInterval( ()=>{
+            makeLeave(getImage(n))
+            .one('transitionend',(e)=>{
+                makeEnter($(e.currentTarget))
+            })
+            makeCurrent(getImage(n+1))
+            n +=1
+        },2000)
+    }
+})
+
 
 // 以下是封装好的函数部分
 function x(n){
